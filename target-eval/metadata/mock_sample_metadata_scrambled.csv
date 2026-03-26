@@ -1,0 +1,5 @@
+sample_column,sample_id,group
+sample_003_Normal,sample_003,Normal
+sample_001_Tumor,sample_001,Tumor
+sample_004_Normal,sample_004,Normal
+sample_002_Tumor,sample_002,Tumor

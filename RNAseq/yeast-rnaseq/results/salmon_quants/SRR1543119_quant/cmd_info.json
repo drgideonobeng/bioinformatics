@@ -1,0 +1,10 @@
+{
+    "salmon_version": "1.10.3",
+    "index": "/Users/go140/bioinformatics-projects/01-yeast-rnaseq/data/reference/salmon_index",
+    "libType": "A",
+    "unmatedReads": "/Users/go140/bioinformatics-projects/01-yeast-rnaseq/data/raw/SRR1543119.fastq.gz",
+    "validateMappings": [],
+    "threads": "4",
+    "output": "/Users/go140/bioinformatics-projects/01-yeast-rnaseq/results/salmon_quants/SRR1543119_quant",
+    "auxDir": "aux_info"
+}

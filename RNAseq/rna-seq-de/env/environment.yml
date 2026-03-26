@@ -1,0 +1,14 @@
+name: rna-seq-de
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - r-base=4.4
+  - bioconductor-deseq2
+  - bioconductor-apeglm
+  - r-tidyverse
+  - r-readr
+  - r-pheatmap
+  - r-optparse
+  - r-rmarkdown
+  - r-knitr

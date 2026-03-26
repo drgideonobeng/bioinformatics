@@ -1,0 +1,9 @@
+{
+    "salmon_version": "1.10.3",
+    "index": "data/reference/salmon_index",
+    "libType": "U",
+    "unmatedReads": "data/raw/SRR1543118.fastq.gz",
+    "validateMappings": [],
+    "output": "results/test_unstranded",
+    "auxDir": "aux_info"
+}

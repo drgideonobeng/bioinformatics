@@ -1,0 +1,16 @@
+name: yeast-rnaseq
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - sra-tools
+  - fastqc
+  - multiqc
+  - trim-galore
+  - salmon
+  - subread
+  - samtools
+  - pigz
+  - fastp  # A faster, modern alternative to trim-galore/fastqc

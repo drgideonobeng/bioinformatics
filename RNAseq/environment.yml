@@ -1,0 +1,21 @@
+name: rnaseq
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  # Core analysis tools
+  - salmon=1.10.0
+  - fastqc=0.12.1
+  - multiqc=1.14
+  - curl
+  
+  # R and Core Bioconductor Packages
+  - r-base
+  - bioconductor-tximport
+  - bioconductor-deseq2
+  
+  # Modern R Toolkit (CRAN packages via conda-forge)
+  - r-tidyverse
+  - r-fs
+  - r-glue
