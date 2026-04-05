@@ -64,7 +64,17 @@ pos.bin
 venv/
 env/
 
-# Ignore heavy output/data
-**/results/
+# Ignore heavy output/data 
 **/data/
 *.gz
+
+# Ignore everything inside all results folders (but keep the folder "open" for exceptions)
+**/results/**/*
+
+# Keep the directory structures intact
+!**/results/**/.gitkeep
+
+# Force Git to track and upload these specific analysis outputs across all project folders
+!**/results/**/*.csv
+!**/results/**/*.pdf
+!**/results/**/*.png

@@ -1,30 +1,26 @@
 # Arabidopsis RNA-Seq Quantification: A Salmon Pseudoalignment Pipeline
 
-This repository contains a reproducible, production-level bioinformatics pipeline for processing bulk RNA-seq data. It utilizes **Salmon** for fast, bias-aware, transcript-level quantification using pseudoalignment.
+# Arabidopsis Thaliana RNA-Seq Analysis Pipeline
 
-The data used in this project originates from an *Arabidopsis thaliana* RNA-seq experiment ([PRJDB2508](https://combine-lab.github.io/salmon/getting_started/)). 
+This project performs a differential expression (DE) analysis on *Arabidopsis thaliana* samples to identify transcriptomic changes under specific experimental conditions (Roots vs. Shoots / Treated vs. Control).
 
-## Why Salmon? (Pseudoalignment vs. Traditional Alignment)
-Traditional RNA-seq pipelines (e.g., HISAT2 + featureCounts) map reads against the entire genome, which is computationally expensive and generates massive intermediate BAM files. 
+##  Summary of Analysis
+- **Reference Genome:** *A. thaliana* (TAIR10)
+- **Quantification:** Salmon (mapping-based)
+- **Differential Expression:** DESeq2 (R/Bioconductor)
+- **Annotation:** Org.At.tair.db / biomaRt
 
-This pipeline leverages **Salmon**, which maps reads directly to the **transcriptome** (cDNA). This pseudoalignment approach offers several advantages:
-* **Speed:** Quantifies samples in minutes rather than hours.
-* **Accuracy:** Automatically corrects for GC-content and sequence-specific biases.
-* **Efficiency:** Eliminates the need for massive intermediate disk storage.
+## Project Structure
+- `scripts/`: Shell scripts for data download, QC (FastQC), and Salmon quantification.
+- `rscripts/`: R scripts for DESeq2 analysis, batch correction, and visualization.
+- `metadata.csv`: Sample mapping and experimental design.
+- `results/`: Processed output, including:
+    - `DE_results_Annotated.csv`: Final list of differentially expressed genes.
+    - `plots/`: Visualizations including Volcano plots, PCA, and Heatmaps.
 
-## Project Architecture
-The project is built with modularity and reproducibility in mind, utilizing a centralized `config.sh` to manage paths and parameters, preventing hard-coded fragility.
-
-```text
-arabidopsis-salmon-rnaseq/
-├── README.md              # Project documentation
-├── environment.yml        # Conda environment definition
-├── config.sh              # Centralized global variables and paths
-├── scripts/
-│   ├── 01_build_index.sh  # Downloads cDNA and builds the Salmon index
-│   ├── 02_download.sh     # Robust paired-end read acquisition via SRA
-│   └── 03_quantify.sh     # Core Salmon pseudoalignment and quantification
-├── data/                  # Raw FASTQ files (git-ignored)
-├── reference/             # Transcriptome FASTA and Salmon Index (git-ignored)
-└── results/
-    └── quants/            # Final transcript counts (.sf files) ready for R
+## How to Run
+1. Update `config.sh` with your local paths.
+2. Run the master pipeline:
+   ```bash
+   bash run_pipeline.sh
+   bash run_r_pipeline.sh

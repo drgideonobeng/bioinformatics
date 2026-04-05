@@ -3,7 +3,8 @@
 # set -eo pipefail
 
 # ========== 1. PROJECT IDENTIFICATION ==========
-export PROJECT_NAME="Arabidopsis_Salmon_RNAseq"
+# CHANGE THIS VARIABLE for each new run to create a separate results folder!
+export PROJECT_NAME="arabidopsis_stress_test_v1"
 export SPECIES="Arabidopsis thaliana"
 
 # Get the absolute path to the directory this script lives in
@@ -12,19 +13,23 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # ========== 2. BASIC PROJECT PATHS ==========
 export ROOT_DIR="${SCRIPT_DIR}"
 
-# Input/Output Directories
+# Input/Reference Directories (These stay shared across all runs)
 export DATA_DIR="${ROOT_DIR}/data"
 export REF_DIR="${ROOT_DIR}/reference"
 export INDEX_DIR="${REF_DIR}/salmon_index"
-export RESULTS_DIR="${ROOT_DIR}/results/quants"
 export SCRIPTS_DIR="${ROOT_DIR}/scripts"
 
-# Main OUT_DIR so R knows where to save the .rds files and plots
-export OUT_DIR="${ROOT_DIR}/results"
+# Main OUT_DIR is now dynamically nested using the PROJECT_NAME
+export BASE_RESULTS_DIR="${ROOT_DIR}/results"
+export OUT_DIR="${BASE_RESULTS_DIR}/${PROJECT_NAME}"
+
+# Sub-directories automatically sit inside the project-specific folder
+export RESULTS_DIR="${OUT_DIR}/quants"
 export PLOT_DIR="${OUT_DIR}/plots"
+export TABLES_DIR="${OUT_DIR}/tables" 
 
 # Ensure all result and reference directories exist safely
-mkdir -p "${DATA_DIR}" "${REF_DIR}" "${INDEX_DIR}" "${RESULTS_DIR}" "${SCRIPTS_DIR}" "${PLOT_DIR}"
+mkdir -p "${DATA_DIR}" "${REF_DIR}" "${INDEX_DIR}" "${RESULTS_DIR}" "${SCRIPTS_DIR}" "${PLOT_DIR}" "${TABLES_DIR}"
 
 # ========== 3. DATA ACQUISITION URLs & LISTS ==========
 # Pointing directly to your SRA Accession List
@@ -70,7 +75,7 @@ export KMER_SIZE=31  # Default k-mer size for Salmon index
 
 echo "------------------------------------------------"
 echo "  Salmon RNA-seq Pipeline Config Loaded         "
-echo "  Project: ${PROJECT_NAME}                      "
+echo "  Project/Run Name: ${PROJECT_NAME}             "
 echo "  Species: ${SPECIES}                           "
-echo "  Root: ${ROOT_DIR}                             "
+echo "  Output Directory: ${OUT_DIR}                  "
 echo "------------------------------------------------"
