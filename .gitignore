@@ -68,13 +68,14 @@ env/
 **/data/
 *.gz
 
-# Ignore everything inside all results folders (but keep the folder "open" for exceptions)
-**/results/**/*
+# 1. Ignore ALL files and directories inside results
+**/results/**
 
-# Keep the directory structures intact
-!**/results/**/.gitkeep
+# 2. UN-IGNORE all subdirectories so Git is allowed to look inside them
+!**/results/**/
 
-# Force Git to track and upload these specific analysis outputs across all project folders
+# 3. UN-IGNORE the specific file types you want to save
 !**/results/**/*.csv
 !**/results/**/*.pdf
 !**/results/**/*.png
+!**/results/**/.gitkeep
