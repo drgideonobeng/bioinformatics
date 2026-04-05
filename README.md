@@ -4,6 +4,10 @@ Welcome to my bioinformatics portfolio! This repository contains end-to-end comp
 
 My goal is to develop modular automated pipelines to process raw high-throughput sequencing data, perform rigorous quality control, execute statistical analyses, and generate publication-ready visualizations.
 
+Welcome to my bioinformatics portfolio! This repository contains a collection of end-to-end computational biology pipelines, data analysis scripts, and visualization workflows. 
+
+These projects demonstrate my ability to process raw high-throughput sequencing data, perform rigorous quality control, execute statistical analyses, and generate publication-ready visualizations.
+
 ---
 
 ## ️ Tech Stack & Tools

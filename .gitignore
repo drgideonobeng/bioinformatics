@@ -27,6 +27,8 @@
 *.sa
 *.amb
 *.ann
+*.clean
+*.bin
 SAindex
 SA
 Genome
@@ -46,6 +48,9 @@ pos.bin
 
 # Massive Directories
 **/data/
+**/data_trimmed/
+**/data_*/
+**/*data/
 **/raw_data/
 **/raw/
 **/quants/
@@ -53,3 +58,13 @@ pos.bin
 **/reference/
 **/known-sites/
 **/objects/
+
+# Ignore virtual environments
+**/.venv/
+venv/
+env/
+
+# Ignore heavy output/data
+**/results/
+**/data/
+*.gz

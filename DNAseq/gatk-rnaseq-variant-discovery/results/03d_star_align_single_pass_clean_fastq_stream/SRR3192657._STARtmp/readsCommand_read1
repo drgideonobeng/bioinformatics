@@ -1,3 +1,0 @@
-exec > "/Users/go140/gatk-rnaseq-variant-discovery/results/03d_star_align_single_pass_clean_fastq_stream/SRR3192657._STARtmp/tmp.fifo.read1"
-echo FILE 0
-/bin/bash   -lc      "/Users/go140/gatk-rnaseq-variant-discovery/data/intermediate/SRR3192657_1.clean.fastq"

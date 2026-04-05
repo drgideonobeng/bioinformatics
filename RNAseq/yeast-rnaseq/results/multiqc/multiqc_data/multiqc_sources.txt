@@ -1,5 +1,0 @@
-Module	Section	Sample Name	Source
-FastQC	all_sections	SRR7281577_1	/Users/go140/bioinformatics-projects/01-yeast-rnaseq/results/fastqc/SRR7281577_1_fastqc.zip
-FastQC	all_sections	SRR7281577_2	/Users/go140/bioinformatics-projects/01-yeast-rnaseq/results/fastqc/SRR7281577_2_fastqc.zip
-FastQC	all_sections	SRR7281585_1	/Users/go140/bioinformatics-projects/01-yeast-rnaseq/results/fastqc/SRR7281585_1_fastqc.zip
-FastQC	all_sections	SRR7281585_2	/Users/go140/bioinformatics-projects/01-yeast-rnaseq/results/fastqc/SRR7281585_2_fastqc.zip
