@@ -9,9 +9,11 @@ suppressPackageStartupMessages({
 
 message("--- Step 3: Quality Control Visualizations ---")
 
-dds <- readRDS(path("results", "dds_analyzed.rds"))
-vsd <- readRDS(path("results", "vsd_transformed.rds"))
-plot_dir <- path("results", "plots")
+out_dir <- Sys.getenv("OUT_DIR")
+dds <- readRDS(path(out_dir, "dds_analyzed.rds"))
+vsd <- readRDS(path(out_dir, "vsd_transformed.rds"))
+
+plot_dir <- path(out_dir, "plots")
 dir_create(plot_dir)
 
 # Plot 1: Dispersion
@@ -22,7 +24,6 @@ dev.off()
 
 # Plot 2: PCA
 message("Generating PCA Plot...")
-# We now group strictly by Treatment instead of Genotype/Batch
 pca_data <- plotPCA(vsd, intgroup = "Treatment", returnData = TRUE)
 percentVar <- round(100 * attr(pca_data, "percentVar"))
 
@@ -40,7 +41,6 @@ message("Generating Sample Distance Heatmap...")
 sampleDists <- dist(t(assay(vsd)))
 sampleDistMatrix <- as.matrix(sampleDists)
 
-# Clean row names to show only Treatment and Sample ID (e.g., "CLE9-SRR37530274")
 rownames(sampleDistMatrix) <- paste(vsd$Treatment, rownames(sampleDistMatrix), sep="-")
 colnames(sampleDistMatrix) <- NULL
 
@@ -51,4 +51,4 @@ pheatmap(sampleDistMatrix,
          main = "Sample Distances")
 dev.off()
 
-message("=> All QC plots saved to results/plots/")
+message(glue("=> All QC plots saved to {plot_dir}/"))

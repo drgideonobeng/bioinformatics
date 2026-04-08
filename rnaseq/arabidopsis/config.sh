@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 # set -e: exit on error; -u: exit on unset variables; -o pipefail: catch errors in pipes
-# set -eo pipefail
+set -eou pipefail
 
 # ========== 1. PROJECT IDENTIFICATION ==========
 # CHANGE THIS VARIABLE for each new run to create a separate results folder!
-export PROJECT_NAME="arabidopsis_stress_test_v1"
+export PROJECT_NAME="arabidopsis_PRJNA1225620"
+
 export SPECIES="Arabidopsis thaliana"
 
 # Get the absolute path to the directory this script lives in
@@ -18,6 +19,7 @@ export DATA_DIR="${ROOT_DIR}/data"
 export REF_DIR="${ROOT_DIR}/reference"
 export INDEX_DIR="${REF_DIR}/salmon_index"
 export SCRIPTS_DIR="${ROOT_DIR}/scripts"
+export TRIM_DIR="${ROOT_DIR}/data_trimmed"
 
 # Main OUT_DIR is now dynamically nested using the PROJECT_NAME
 export BASE_RESULTS_DIR="${ROOT_DIR}/results"
@@ -29,7 +31,7 @@ export PLOT_DIR="${OUT_DIR}/plots"
 export TABLES_DIR="${OUT_DIR}/tables" 
 
 # Ensure all result and reference directories exist safely
-mkdir -p "${DATA_DIR}" "${REF_DIR}" "${INDEX_DIR}" "${RESULTS_DIR}" "${SCRIPTS_DIR}" "${PLOT_DIR}" "${TABLES_DIR}"
+mkdir -p "${DATA_DIR}" "${REF_DIR}" "${INDEX_DIR}" "${RESULTS_DIR}" "${SCRIPTS_DIR}" "${PLOT_DIR}" "${TABLES_DIR}" "${TRIM_DIR}"
 
 # ========== 3. DATA ACQUISITION URLs & LISTS ==========
 # Pointing directly to your SRA Accession List
@@ -66,7 +68,7 @@ done < "${METADATA_FILE}"
 export SAMPLE_LIST=$(IFS=,; echo "${SAMPLES[*]}")
 export TREATMENT_LIST=$(IFS=,; echo "${TREATMENTS[*]}")
 
-export CONTROL_TREATMENT="Water"
+export CONTROL_TREATMENT="WT"
 
 # ========== 5. QUANTIFICATION PARAMETERS ==========
 export THREADS=8

@@ -64,18 +64,7 @@ pos.bin
 venv/
 env/
 
-# Ignore heavy output/data 
+# Ignore heavy output/data
+**/results/
 **/data/
 *.gz
-
-# 1. Ignore ALL files and directories inside results
-**/results/**
-
-# 2. UN-IGNORE all subdirectories so Git is allowed to look inside them
-!**/results/**/
-
-# 3. UN-IGNORE the specific file types you want to save
-!**/results/**/*.csv
-!**/results/**/*.pdf
-!**/results/**/*.png
-!**/results/**/.gitkeep

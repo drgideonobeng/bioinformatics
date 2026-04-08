@@ -6,10 +6,6 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Source the config file located one folder up
 source "${SCRIPT_DIR}/../config.sh"
 
-# Define a new directory for the clean data
-export TRIM_DIR="${ROOT_DIR}/data_trimmed"
-mkdir -p "${TRIM_DIR}"
-
 echo "======================================================"
 echo " Step 4: Trimming Adapters & Quality Filtering (fastp)"
 echo "======================================================"

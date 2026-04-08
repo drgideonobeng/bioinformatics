@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-# Exit immediately if any command fails
-set -e
+#!/usr/bin/env bash
+# set -e: exit on error; -u: exit on unset variables; -o pipefail: catch errors in pipes
+set -euo pipefail
 
 echo "########################################################"
 echo " INITIALIZING AUTOMATED RNA-SEQ UPSTREAM PIPELINE"

@@ -5,12 +5,14 @@ suppressPackageStartupMessages({
   library(glue)
 })
 
-message("--- Model Execution ---")
+message("--- Step 2: Model Execution ---")
 
-rds_in <- path("results", "dds_unprocessed.rds")
-out_dir <- path("results")
+out_dir <- Sys.getenv("OUT_DIR")
+if(out_dir == "") stop("Error: OUT_DIR is empty. Sourcing config.sh failed.")
 
+rds_in <- path(out_dir, "dds_unprocessed.rds")
 if (!file_exists(rds_in)) stop(glue("Error: Cannot find {rds_in}"))
+
 dds <- readRDS(rds_in)
 
 message("Running DESeq2 algorithm...")
@@ -22,6 +24,5 @@ vsd <- vst(dds, blind = FALSE)
 # Checkpoint Saves
 saveRDS(dds, path(out_dir, "dds_analyzed.rds"))
 saveRDS(vsd, path(out_dir, "vsd_transformed.rds"))
-message("=> Saved analyzed dds and vsd objects to results/")
-
+message(glue("=> Saved analyzed dds and vsd objects to {out_dir}/"))
 
