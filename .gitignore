@@ -68,3 +68,6 @@ env/
 **/results/
 **/data/
 *.gz
+
+# system files
+*.DS_Store
