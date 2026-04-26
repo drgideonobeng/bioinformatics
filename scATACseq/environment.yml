@@ -1,0 +1,22 @@
+name: scATACseq
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  # Base R
+  - r-base=4.3
+  
+  # Core single-cell and ATAC-seq packages
+  - r-seurat
+  - r-signac
+  
+  # Bioconductor packages for downloading and annotating
+  - bioconductor-geoquery
+  - bioconductor-ensdb.hsapiens.v86
+  
+  # Utility and data manipulation packages
+  - r-fs
+  - r-glue
+  - r-dplyr
+  - r-ggplot2

@@ -1,0 +1,5 @@
+sample_id,geo_accession,genotype,batch
+Mesp1_E80,GSM4816083,E80,run_1 
+Mesp1_E825,GSM4816084,E825,run_2
+Mesp1_E95,GSM4816085,E95,run_3
+Mesp1_E105,GSM4816086,E105,run_4
