@@ -4,6 +4,13 @@ library(Signac)
 library(fs)
 library(glue)
 library(readr) # tidyverse package for fast, clean CSV writing
+library(future)
+
+# Parrallel processing
+plan("multicore", workers = 8)
+options(future.globals.maxSize = 8000 * 1024^2)
+
+message("Parallel processing enabled via future (M3 Max Optimized!)")
 
 # Fetch configurations
 obj_dir    <- Sys.getenv("OBJ_DIR", unset = "results/objects")
