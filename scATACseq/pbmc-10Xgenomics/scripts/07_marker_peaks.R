@@ -3,11 +3,11 @@ library(Seurat)
 library(Signac)
 library(fs)
 library(glue)
-library(readr) # tidyverse package for fast, clean CSV writing
+library(readr)
 library(future)
 
 # Parrallel processing
-plan("multicore", workers = 8)
+plan(multicore, workers = 8)
 options(future.globals.maxSize = 8000 * 1024^2)
 
 message("Parallel processing enabled via future (M3 Max Optimized!)")
@@ -46,5 +46,7 @@ da_peaks <- FindAllMarkers(
 # 4. Save the results
 save_path <- path(tables_dir, "07_marker_peaks.csv")
 write_csv(da_peaks, save_path)
-message(glue("-> Saved Marker Peaks table to: {save_path}"))
-message(glue("==============================================="))
+message("===============================================")
+message(glue(" Saved Marker Peaks table to: {save_path}"))
+message("Step 07: Marker Peaks Complete")
+message("===============================================")

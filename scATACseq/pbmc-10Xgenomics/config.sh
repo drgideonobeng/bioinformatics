@@ -5,15 +5,17 @@
 # ==============================================================================
 
 # 1. Project & Data Source
-export GEO_ACCESSION="PBMC"
-export GEO_PREFIX="10X_Genomics" 
-export PROJECT_NAME="${GEO_ACCESSION}_${GEO_PREFIX}"
+export PROJECT_NAME="PBMC_10k"
 
-# 2. Directory Structure
-export DATA_MATRIX_DIR="data/raw_matrix"
-export OBJ_DIR="results/objects"
-export PLOT_DIR="results/plots"
-export TABLES_DIR="results/tables"
+# ========== 2. BASIC PROJECT PATHS ==========
+# ROOT_DIR is the directory where this config.sh file lives
+export ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Input/Output Directories
+export DATA_MATRIX_DIR="${ROOT_DIR}/data/raw_matrix"
+export OBJ_DIR="${ROOT_DIR}/results/objects"
+export PLOT_DIR="${ROOT_DIR}/results/plots"
+export TABLE_DIR="${ROOT_DIR}/results/tables"
 
 # 3. Filtering Parameters (scATAC-seq specific)
 export MIN_PEAKS="3000"
@@ -36,4 +38,9 @@ export URL_MATRIX="https://cf.10xgenomics.com/samples/cell-atac/1.0.1/atac_v1_pb
 export URL_FRAGMENTS="https://cf.10xgenomics.com/samples/cell-atac/1.0.1/atac_v1_pbmc_10k/atac_v1_pbmc_10k_fragments.tsv.gz"
 export URL_FRAG_INDEX="https://cf.10xgenomics.com/samples/cell-atac/1.0.1/atac_v1_pbmc_10k/atac_v1_pbmc_10k_fragments.tsv.gz.tbi"
 
+echo "=================================================="
 echo "Configuration loaded for project: $PROJECT_NAME"
+echo "Root Directory : $ROOT_DIR"
+echo "Minimum TSS Enrichment : $MIN_TSS_ENRICHMENT"
+echo "Maximum Nucleosome Signal : $MAX_NUCLEOSOME_SIGNAL"
+echo "=================================================="

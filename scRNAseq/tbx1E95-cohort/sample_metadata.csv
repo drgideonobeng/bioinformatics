@@ -1,0 +1,3 @@
+sample_id,geo_accession,genotype,batch
+Tbx1-wt-E95,GSM5169144,WT,run_1
+Tbx1-KO-E95,GSM5169145,KO,run_2

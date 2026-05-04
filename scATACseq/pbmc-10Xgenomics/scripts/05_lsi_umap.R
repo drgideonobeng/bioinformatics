@@ -52,5 +52,6 @@ message(glue("-> Saved UMAP plot to: {plot_path}"))
 # 5. Save Object
 save_path <- path(obj_dir, "05_atac_clustered.rds")
 saveRDS(seurat_obj, file = save_path)
-message(glue("-> Saved clustered object to: {save_path}"))
-message(glue("==============================================="))
+message("===============================================")
+message(glue("-Step 05 Completed:Saved clustered object to: {save_path}"))
+message("===============================================")

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -eou pipefail
+#set -eou pipefail
 
 # ========== 1. PROJECT IDENTIFICATION ==========
 export PROJECT_NAME="melanoma_crispr_screen"
@@ -25,7 +25,7 @@ mkdir -p "${RAW_DIR}" "${TRIM_DIR}" "${REF_DIR}" "${QC_DIR}" "${COUNT_DIR}" "${T
 export T0_CTRL_URL="https://zenodo.org/records/5750854/files/T0-Control.fastq.gz"
 export T8_VEH_URL="https://zenodo.org/records/5750854/files/T8-Vehicle.fastq.gz"
 export T8_DRUG_URL="https://zenodo.org/records/5750854/files/T8-APR-246.fastq.gz"
-export LIBRARY_URL="https://zenodo.org/records/5750854/files/Brunello_library.csv"
+export LIBRARY_URL="https://zenodo.org/records/5750854/files/brunello.tsv?download=1"
 
 # ========== 4. EXPERIMENT METADATA ==========
 # Adapter sequence to trim (5' adapter for the lentiGuide-Puro vector)
@@ -34,7 +34,7 @@ export ADAPTER_5P="TCTTGTGGAAAGGACGAAACACCG"
 # MAGeCK labels
 export CTRL_SAMPLES="T8-Vehicle"
 export TREAT_SAMPLES="T8-APR-246"
-export LIBRARY_FILE="${REF_DIR}/Brunello_library.csv"
+export LIBRARY_FILE="${REF_DIR}/Brunello.tsv"
 
 export THREADS=8
 

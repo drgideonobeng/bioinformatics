@@ -13,15 +13,15 @@ min_cells    <- as.numeric(Sys.getenv("MIN_CELLS", unset = 10))
 min_features <- as.numeric(Sys.getenv("MIN_FEATURES", unset = 200))
 genome_build <- Sys.getenv("GENOME_BUILD", unset = "hg38")
 
-h5_path   <- path(matrix_dir, "matrix.h5")
+h5_matrix_path   <- path(matrix_dir, "matrix.h5")
 frag_path <- path(matrix_dir, "fragments.tsv.gz")
 
-message(glue("Loading ATAC matrix from {h5_path}..."))
-counts <- Read10X_h5(filename = h5_path)
+message(glue("Loading ATAC matrix from {h5_matrix_path}..."))
+h5_matrix <- Read10X_h5(filename = h5_matrix_path)
 
 message(glue("Building ChromatinAssay..."))
 chrom_assay <- CreateChromatinAssay(
-  counts       = counts,
+  counts       = h5_matrix,
   sep          = c(":", "-"),
   fragments    = frag_path,
   min.cells    = min_cells,

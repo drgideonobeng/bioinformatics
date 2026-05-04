@@ -12,8 +12,8 @@ library(ggplot2)
 library(future)
 
 # Parrallel Processing (Increase threads(workers) to 8)
-plan("multicore", workers = 8)
-options(future.globals.maxSize = 8000 * 1024^2)
+plan(multicore, workers = 8)
+options(future.globals.maxSize = 8 * 1024^3)
 
 message("=========Parrallel processing enabled=========")
 
@@ -32,13 +32,25 @@ da_peaks <- read_csv(path(tables_dir, "07_marker_peaks.csv"), show_col_types = F
 
 # 2. Extract JASPAR Motifs
 message("Extracting known transcription factor motifs from JASPAR2020...")
-pfm <- GetMatrixSet(
+pfm <- getMatrixSet(
   x = JASPAR2020,
   opts = list(collection = "CORE", tax_group = 'vertebrates', all_versions = FALSE)
 )
 
 # 3. Add Motifs to ATAC Object
-# This step maps the A/C/T/G sequences of our peaks using the hg38 genome
+message("Filtering out-of-bounds peaks...")
+peaks <- granges(atac_obj)
+genome_lengths <- seqlengths(BSgenome.Hsapiens.UCSC.hg38)
+
+# 1. Find the logical indices of peaks that fit within the chromosome bounds
+valid_idx <- start(peaks) >= 1 & end(peaks) <= genome_lengths[as.character(seqnames(peaks))]
+
+# 2. Grab the exact string names Seurat uses for those valid peaks
+valid_peak_names <- rownames(atac_obj)[valid_idx]
+
+# 3. Subset the Seurat object keeping only those valid rows
+atac_obj <- atac_obj[valid_peak_names, ]
+
 message("Scanning peaks for motif sequences (using hg38 genome)...")
 atac_obj <- AddMotifs(
   object = atac_obj,
@@ -77,3 +89,4 @@ message(glue("-> Saved Motif plot to: {plot_path}"))
 # 6. Save Final Object
 saveRDS(atac_obj, path(obj_dir, "08_atac_motifs.rds"))
 message("===============================================")
+message("Step 08: Motif Analysis Completed")
